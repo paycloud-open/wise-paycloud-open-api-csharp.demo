@@ -9,10 +9,10 @@ namespace APITestDemo
         static void Main(string[] args)
         {
             // 1. Global parameter settings
-            string appRsaPrivateKeyPem = "MIIEowIBAAKCAQEAlDy3zuoa/f6X7GnmxzHAuEn2zNAqCX0sAwyOzVtPlooHO3csG0yaOt5MAzOgZirgWZpnxnHvyq2Y9VIjTqAj3t/ZEafePQTwuaTP3+oyDNRxzn4FoRwwai+6q8AnanESdZyR+ZwMgNVRLAACChQlzIfi9G4/MnnofUEOg7kFGevK9K+svIqS6EUQ2ePpXXBsnp/YMBYAG4hCD/lEbZhRTlCoU2b6qauq+CDjTDtMBK26Y+pro/RezIcS9d2UCUzf7EBeFaiirYoz2jQjkDYg8E/qz7seTqeTHgJC1ih0ffhHfUKKpk6S04dIYWYMWVqDkaRAkR+HbxL6AkmY1JhEMwIDAQABAoIBAGclgLjHiRSnrMriPaTpZ7JUNRj61+VWZeORP2SBXvXfAX1NRTGRsde4iqfHqpqsxwNSP1eEPFiJRt+c0diJ8avJkt+IMUnAQEjM96BU85Kd2LrYUc5zMPUSVQ/hWwvjtfaEhcZr4P9cb2jwcHrW3h5dh3yRogPbc/yD4jeh7HzF1j/Oyt5WdBL2VSgTzz3aT+aES5KIo4eWsKiGwEksfUDpy87WTvzKu19lPpsrpVnS24XfxufchrXylMhW4SGzbP1rMJ7jZbHX5PG40bJsolaCfLHbpGBVGLA7Ly2QHbETFBJ5UmC+lPubHbKw3IyfGRK4GQh0sZy18OaglWySmVECgYEA3fLnwYalT9xecJ4NhRYFIb8Anf+Pxm3psqRHsTye9siozhmdWvGgKDnfVNDxHPnKtUHWEg+at0DeaGMoSI6qR5gOzYz7XOV3DK5HOKl6v/7XsP5CR+VUcyGbd2W4SBhhzk5RjShVM3iEM+xxYSlJbcI0auDSQVY6ghSU4/i+eC0CgYEAqvrE4jA9nAGAegvj6d3ZRJqX/wm7WpW/kWPQsXj1/oEUhSacOHbE94gf3NNHZXoPpGGHzHkr4z1q93cw+DZKLIoVwO9/uBJB+pPqpyLJUa204baonuzE1+W+uJ4azZiAIqHqSFWyBdNkwKTiFIFeG6wQO7jHu41Vjp3Et3rECd8CgYBK25p/E0K+ZL0VjrlQodSpRRqYL5H2gyvHLNFhXejfo14L5WfFPKmf56UDnlU0SKut5r6k6M5t8FsTKh50GmokK40SlvJQqrQ0erNa0Q6tou5sq9T/GsIY8sTUyGIXLuIOCyxGR8w0x/kO6jhzZNF3S4ESazF/B+5D4V02ZrcXIQKBgA1wPk9E2WLMn2t4ScaU4EHLIM0z15zsDi2AOePpDPSe8pzwhvDNLPgDo/V4SbFJIbeaztCcaX2n0yN2I8wugC/1/nW2nUQ7cyIdxCC01DvuOjxPXft3wpTxgscB7jtglBmkvkRHMAHTNqUJkJdp/5qPMItxH4m3NxVJgy+kn4njAoGBAMiW5KEYwMsEgo9cu2n8jOuyaiqxve0K19akG4PHywZTJNj0IN7M5RHiA6ZJCRh+PO9TPCpYw1VwZcEQ7tAvwCqkSfJ4ZoeuXOSuw0+sGkYr11eJpGS813KFb10xtIeWCLD/GYhDptNJohjH7qiv0vFL3hGs7TkJ9mj472qOAcrn";
-            string gatewayRsaPublicKeyPem = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2m4nkQKyQAxJc8VVsz/L6qVbtDWRTBolUK8Dwhi9wH6aygA6363PVNEPM8eRI5W19ssCyfdtNFy6DRAureoYV053ETPUefEA5bHDOQnjbb9PuNEfT651v8cqwEaTptaxj2zujsWI8Ad3R50EyQHsskQWms/gv2aB36XUM4vyOIk4P1f3dxtqigH0YROEYiuwFFqsyJuNSjJzNbCmfgqlQv/+pE/pOV9MIQe0CAdD26JF10QpSssEwKgvKvnXPUynVu09cjSEipev5cLJSApKSDZxrRjSFBXrh6nzg8JK05ehkI8wdsryRUneh0PGN0PgYLP/wjKiqlgTJaItxnb/JQIDAQAB";
-            string gatewayUrl = "https://gw.paycloud.world/api/entry";
-            string appId = "wz715fc0d10ee9d156";
+            string appRsaPrivateKeyPem = "<YOUR APP RSA PRIVATE KEY>";
+            string gatewayRsaPublicKeyPem = "<YOUR GATEWAY RSA PUBLIC KEY>";
+            string gatewayUrl = "<YOUR GATEWAY URL>";
+            string appId = "<YOUR APP ID>";
 
             // 2. Set parameters
             Dictionary<string, string> parameters = new Dictionary<string, string>();
