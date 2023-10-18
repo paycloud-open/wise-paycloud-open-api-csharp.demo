@@ -1,4 +1,6 @@
 ﻿using Newtonsoft.Json;
+using System.Net.Http.Headers;
+using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -9,10 +11,10 @@ namespace APITestDemo
         static void Main(string[] args)
         {
             // 1. Global parameter settings
-            string appRsaPrivateKeyPem = "<YOUR APP RSA PRIVATE KEY>";
-            string gatewayRsaPublicKeyPem = "<YOUR GATEWAY RSA PUBLIC KEY>";
-            string gatewayUrl = "<YOUR GATEWAY URL>";
-            string appId = "<YOUR APP ID>";
+            string appRsaPrivateKeyPem = "MIIEowIBAAKCAQEAgSK0pmD8p4hBWRbYJDL8OnWxJ/ry6Nw+Vqbud3sl3pi6CnVBQhZYv8nv2h8vwAZhXYXBdmE3tLcRgy+rlzMqQBYPdhFEZmet2CUc74Mwu1Evxj6NMLPwD6brPY9aaiKsn+oYz84/zUtb1yH6F/6RADPzRpZGY7l4tqku0tSxas+mDWk5OOgeJoQ4C70ihT2rQDXf1gKsmOBDUPQQxzQlRLxyBwqLm8bCREmdfO81zscXE2DUQ3YBo7y09pdQ9WYYYaUzvi9QZeA4sI5dT1vr0Y/R8xbOfvQf3OM7k3EMelyMNZ9T7P90BfK/MCMdaPdFVT0LH3xBpASEwHroN8nV9QIDAQABAoIBAECEfWsO08xD+BoxnqVfT8NJX8xQxaHvv7l9R3Esdrwi4/growIItiiEFLCOmkW/KlAWbpTdd35zZG19mKY/KuG/49OiRuE+9Y0i5bUIf4Vmx46tW880Z0D6rVchUxPp5QM0a1cPfbLs7qKqWBA64GkQi3/9voc+eAASwNEW8Nki1eqTbRXwM3wLpnqsNLBj1+iVaFyV5kPsg85tiJy2cL7He/rORAH2lhRq4j6MUrUFTSzb0EOIFiM13HWGwd6CYik+zdmcGIYJ+esG4SPkouF3oJn9Re9OfFpOQ8jkzqNb+yTzywq+Rv2SMfmRA3dHI6ijiPTslj3Jh5T5rFPOzXUCgYEAuBNgAy2Gi1cUADafnAQ7aGuXViTbPBYv1B2RvxqXOY4CgGpuh9FXcsYwaAYQlohdXVCxN6Gm7gn01IsIAcusCWZas8DulXRaouRwxRvJURLoF8tcauqFhgGoNZGwYSCXHyhsr41UbKu6AMtC6UIcjkxh0NYhiOnF6ijc7jdQhJ8CgYEAs5fPV2srtXG1pFeppyYxdXOm93Kas1IXYdjj9upk4dpccdUSjVDWX4k5dHBONI7h3NU3QOEywbsyZ+M+QIpWbC48hRFqxuOV3RAHQ4F8RNWrNLJtusJMt+uE+ETAkkSKCnISeBnyxeW9n0FFRdO5RKD0jApnVtxhurbhkplQ6OsCgYB3/Sk46RQrADgpa3HfYWLYTkn3/U5rfIrw2dWHnO22trsqujYSkoNObaJgLJPjjEBP86mRee42fIb7hSVTBlC+T9oQElNzWMU8KWzZD6PLFWf1GrrDdtxS3gGn6a/voC7iQJeYV6gQrmAw5E5Zfp7eoyuf1fVGKhy45qodHjF+QQKBgG55QggqWrbAfdXcPvYdHmt7ewfYLaWFJ/D+tCxdPzVXV2qGgWUAhv45sWgY9WKLShDH77cvUEOv3W/eb5rP/h2Jy5ynfCFgOf3EMFOsQT8umKRP5gPuJbc1X5RA5pyTIL8QMKBEhfyKODzQr8YmWV8IC6Zhd/QMmOl8OgIt4YGFAoGBAIfcsRGELgZc1vSL9lekX9p83vuMb7yAIKtfr4WJtfCpiJ/fGL7FVgppS9+GQi5oweUtOcjx8KYZHqd+Wno7UCLgRvGlvm2ZXfnWuoZczv0gZNwGIxJqQssla4+eKSM3667VZLlHawg0pKVcrdgRDZiyoO8u8M6YUGdjCUmPhvTt";
+            string gatewayRsaPublicKeyPem = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2m4nkQKyQAxJc8VVsz/L6qVbtDWRTBolUK8Dwhi9wH6aygA6363PVNEPM8eRI5W19ssCyfdtNFy6DRAureoYV053ETPUefEA5bHDOQnjbb9PuNEfT651v8cqwEaTptaxj2zujsWI8Ad3R50EyQHsskQWms/gv2aB36XUM4vyOIk4P1f3dxtqigH0YROEYiuwFFqsyJuNSjJzNbCmfgqlQv/+pE/pOV9MIQe0CAdD26JF10QpSssEwKgvKvnXPUynVu09cjSEipev5cLJSApKSDZxrRjSFBXrh6nzg8JK05ehkI8wdsryRUneh0PGN0PgYLP/wjKiqlgTJaItxnb/JQIDAQAB";
+            string gatewayUrl = "https://gw.paycloud.world/api/entry";
+            string appId = "wzcd0145d789d913cb";
 
             // 2. Set parameters
             Dictionary<string, string> parameters = new Dictionary<string, string>();
@@ -38,16 +40,22 @@ namespace APITestDemo
 
             // 5. Send HTTP request
             string jsonString = JsonConvert.SerializeObject(parameters);
-            Chilkat.Http http = new Chilkat.Http();
+            
             Console.WriteLine("Request to gateway[" + gatewayUrl + "] send data  -->> " + jsonString + "\n");
-            Chilkat.HttpResponse resp = http.PostJson2(gatewayUrl, "application/json", jsonString);
-            string responseStr = resp.BodyStr;
-            Console.WriteLine("Response from gateway[" + gatewayUrl + "] receive data <<-- " + responseStr + "\n");
-            if (http.LastMethodSuccess != true)
-            {
-                Console.WriteLine("Error: " + http.LastErrorText);
+
+            var httpClient = new HttpClient();
+            httpClient.DefaultRequestHeaders.Accept.Clear();
+            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            var response = httpClient.PostAsync(gatewayUrl, new StringContent(jsonString, Encoding.UTF8, "application/json")).Result;
+            var responseStr = "";
+            if (response.IsSuccessStatusCode){
+                responseStr = response.Content.ReadAsStringAsync().Result;
+            }else{
+                Console.WriteLine("Request to gateway[" + gatewayUrl + "] failed: " + response.ToString);
                 return;
             }
+
+            Console.WriteLine("Response from gateway[" + gatewayUrl + "] receive data <<-- " + responseStr + "\n");
 
             // 6. Verify the signature of the response message
             Dictionary<string, string> respParameters = JsonConvert.DeserializeObject<Dictionary<string, string>>(responseStr);
