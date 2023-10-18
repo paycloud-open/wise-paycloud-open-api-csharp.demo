@@ -43,19 +43,23 @@ namespace APITestDemo
             
             Console.WriteLine("Request to gateway[" + gatewayUrl + "] send data  -->> " + jsonString + "\n");
 
-            var httpClient = new HttpClient();
-            httpClient.DefaultRequestHeaders.Accept.Clear();
-            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            var response = httpClient.PostAsync(gatewayUrl, new StringContent(jsonString, Encoding.UTF8, "application/json")).Result;
             var responseStr = "";
-            if (response.IsSuccessStatusCode){
-                responseStr = response.Content.ReadAsStringAsync().Result;
-            }else{
-                Console.WriteLine("Request to gateway[" + gatewayUrl + "] failed: " + response.ToString);
-                return;
+            try{
+                var httpClient = new HttpClient();
+                httpClient.DefaultRequestHeaders.Accept.Clear();
+                httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                var response = httpClient.PostAsync(gatewayUrl, new StringContent(jsonString, Encoding.UTF8, "application/json")).Result;
+                if (response.IsSuccessStatusCode){
+                    responseStr = response.Content.ReadAsStringAsync().Result;
+                    Console.WriteLine("Response from gateway[" + gatewayUrl + "] receive data <<-- " + responseStr + "\n");
+                }
+                else{
+                    Console.WriteLine("Request to gateway[" + gatewayUrl + "] failed: " + response);
+                    return;
+                }
+            }catch (Exception ex){
+                Console.WriteLine("Request exception: " + ex.Message);
             }
-
-            Console.WriteLine("Response from gateway[" + gatewayUrl + "] receive data <<-- " + responseStr + "\n");
 
             // 6. Verify the signature of the response message
             Dictionary<string, string> respParameters = JsonConvert.DeserializeObject<Dictionary<string, string>>(responseStr);
